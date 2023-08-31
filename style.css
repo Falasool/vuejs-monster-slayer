@@ -7,6 +7,10 @@
   --blue-color: #256fc4;
 }
 
+[v-cloak]{
+  display:none
+}
+
 html {
   font-family: 'Jost', sans-serif;
 }
