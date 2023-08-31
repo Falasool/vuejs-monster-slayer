@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>⚔️ Monster Slayer 🛡️</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/vue@next" defer></script>
+
+    <link rel="stylesheet" href="./style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1>⚔️ MONSTER SLAYER 🛡️</h1>
+    </header>
+
+    <div class="game">
+      <!-- 怪兽血条 -->
+      <section class="container">
+        <h2>Monster Health</h2>
+        <div class="health-bar">
+          <div class="health-value" :style="monsterBarStyle"></div>
+        </div>
+      </section>
+
+      <!-- 骑士血条 -->
+      <section v-if="uname" class="container">
+        <h2>Knight {{ uname }} Health</h2>
+        <div class="health-bar">
+          <div class="health-value" :style="knightBarStyle"></div>
+        </div>
+      </section>
+
+      <!-- 选择玩家姓名 -->
+      <section v-if="!uname" class="container choose-player-name">
+        <input
+          v-model.trim.lazy="uname"
+          @click.enter="onBlur"
+          class="name-input"
+          type="text"
+          placeholder="Choose Your Name"
+        />
+      </section>
+
+      <!-- 比赛结果：赢/输/平局 -->
+      <section v-if="winner" class="container game-result">
+        <h2>FINAL STATEMENT</h2>
+        <h3 v-if="winner==='knight'">🥳 YOU WON 🥳</h3>
+        <h3 v-else-if="winner==='monster'">😔 YOU LOST 😔</h3>
+        <h3 v-else>😐 DRAW 😐</h3>
+      </section>
+
+      <!-- 重新开始 -->
+      <section v-if="winner" class="restart" @click="restartGame"><button>RESTART</button></section>
+
+      <!-- 操作按扭： -->
+      <section v-if="uname && !winner" class="operate">
+        <button @click="attackMonster">ATTACK</button>
+        <button @click="specialAttackMonster" :disabled="mayUseSpecialAttack">
+          SPECIAL
+        </button>
+        <button @click="healKnight">HEAL</button>
+        <button @click="surrenderKnight">SURRENDER</button>
+      </section>
+
+      <section v-if="uname" class="container game-log">
+        <h2>Battle Log</h2>
+        <ul class="log-list">
+          <li v-for="log in logs" :key="currentTime">
+            [{{currentTime()}}] {{ log.actionBy }} {{log.actionType}} {{
+            log.actionValue }}
+            <span v-if="log.actionType=='attacks'">damage</span>
+            <span v-else-if="log.actionType=='surrenders'"></span>
+            <span v-else>points</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>

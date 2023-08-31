@@ -1,0 +1,186 @@
+:root {
+  --accent-color: #d16174;
+  --accent-color-2: #e23753;
+  --green-color: #58d6b0;
+  --green-color-2: #21af85;
+  --yellow-color: #e4af03;
+  --blue-color: #256fc4;
+}
+
+html {
+  font-family: 'Jost', sans-serif;
+}
+
+/* 手机屏幕适配 */
+@media (max-width: 393px) {
+  h1 {
+    font-size: 1.6em;
+  }
+  input {
+    text-align: left;
+  }
+  input::placeholder {
+    text-align: left;
+  }
+}
+
+/* 
+  HEADER
+*/
+
+.header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  padding: 0.5rem;
+  background-color: var(--accent-color);
+  color: white;
+  /* 水平居中 */
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* 
+  GENERAL CONTAINER
+*/
+
+.container {
+  width: 60%;
+  text-align: center;
+  padding: 0.4rem;
+  margin: 1rem auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+  border-radius: 50px;
+  box-shadow: 5px 5px 0 #d9d9d9, -5px -5px 0 rgba(201, 66, 88, 0.25);
+}
+
+/* 
+  HEALTH BAR
+*/
+
+.health-bar {
+  height: 20px;
+  margin: 1rem 2rem;
+  /* 圆角 */
+  border-radius: 1000px;
+  overflow: hidden;
+  /* --- */
+  background-color: #ebebeb;
+}
+
+/* 血条 */
+.health-value {
+  background-color: var(--green-color);
+  height: 100%;
+  /* 
+    过渡效果 
+    X轴缩放倍率为1
+    变化原点为左侧
+  */
+  transition: all 350ms ease-out;
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* 选择玩家姓名 */
+.name-input {
+  font: inherit;
+  font-size: 1.4rem;
+  font-weight: bold;
+  /* 去掉边框 */
+  border: none;
+  /* 居中 */
+  text-align: center;
+  /* input背景从白变透明 */
+  background: transparent;
+  height: 1.4rem;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+/* input占位符样式 */
+.name-input::placeholder {
+  opacity: 0.75;
+  font-weight: normal;
+}
+/* focus状态也不出现边框线 */
+input:focus {
+  outline: none;
+}
+
+/* ****** */
+/* BUTTON */
+/* ****** */
+
+.operate {
+  text-align: center;
+
+  display: flex;
+  /* 主轴方向 */
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* item 垂直居中 */
+  align-items: center;
+  /* 让所有items居中：就像五官全长在脸中间 */
+  justify-content: center;
+  background: none;
+  /* 
+    backdrop效果：无
+    常用blur/invert等
+  */
+  backdrop-filter: none;
+}
+
+.operate button {
+  margin: 0.6rem;
+  /* 
+    效果：每行固定2个item
+    解释：item增长因子为0（不伸展）、缩小比例1（空间不足等比缩小）、空间分为3份
+  */
+  flex: 0 1 calc(100% / 3);
+}
+
+button {
+  font: inherit;
+  border: 1px solid transparent;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  width: 10rem;
+  /* 光标形状 */
+  cursor: pointer;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+  /* 转写为大写字母 */
+  /* text-transform: uppercase; */
+  text-align: center;
+  /* 按扭上的文字不允许用户选中 */
+  user-select: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover,
+button:active {
+  background-color: var(--accent-color-2);
+  border-color: var(--accent-color-2);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
+}
+
+button:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  box-shadow: none;
+  color: #3f3f3f;
+  cursor: not-allowed;
+}
+
+.restart {
+  text-align: center;
+}
+
+.log-list {
+  list-style-type: none;
+}
