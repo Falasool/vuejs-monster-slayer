@@ -6,6 +6,11 @@
     <title>⚔️ Monster Slayer 🛡️</title>
 
     <link
+      rel="shortcut icon"
+      href="https://icons8.com/icon/10297/knight"
+      type="image/x-icon"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
       rel="stylesheet"
     />
@@ -56,7 +61,9 @@
       </section>
 
       <!-- 重新开始 -->
-      <section v-if="winner" class="restart" @click="restartGame"><button>RESTART</button></section>
+      <section v-if="winner" class="restart" @click="restartGame">
+        <button>RESTART</button>
+      </section>
 
       <!-- 操作按扭： -->
       <section v-if="uname && !winner" class="operate">
